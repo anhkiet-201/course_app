@@ -1,0 +1,16 @@
+targets:
+  $default:
+    builders:
+      graphql_codegen:
+        options:
+          clients:
+            - graphql
+          generatedFileHeader: "// GENERATED FILE\n// DO NOT MODIFY\n"
+          assetsPath: lib/graphql/**
+          outputDirectory: __generated__
+          # scalars:
+          #   ISODateTime:
+          #     type: String/DateTime
+          #   JSON:
+          #     type: Map<String, dynamic>
+          namingSeparator: ""

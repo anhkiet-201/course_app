@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "151128183564",
+    "project_id": "kt-course",
+    "storage_bucket": "kt-course.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151128183564:android:a58f294d601674454d2f29",
+        "android_client_info": {
+          "package_name": "com.kt.anhkiet.kt_course"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlWMCRQSyWZlwVYixf8nPCCCzt77b9UBQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
