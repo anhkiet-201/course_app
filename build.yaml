@@ -1,16 +1,30 @@
 targets:
   $default:
     builders:
-      graphql_codegen:
+      # graphql_codegen:
+      #   options:
+      #     clients:
+      #       - graphql
+      #     generatedFileHeader: "// GENERATED FILE\n// DO NOT MODIFY\n"
+      #     assetsPath: lib/graphql/**
+      #     outputDirectory: __generated__
+      #     # scalars:
+      #     #   ISODateTime:
+      #     #     type: String/DateTime
+      #     #   JSON:
+      #     #     type: Map<String, dynamic>
+      #     namingSeparator: ""
+      freezed:
+        enabled: true
+        generate_for:
+          include:
+            - lib/network/model/**/*.dart
         options:
-          clients:
-            - graphql
-          generatedFileHeader: "// GENERATED FILE\n// DO NOT MODIFY\n"
-          assetsPath: lib/graphql/**
-          outputDirectory: __generated__
-          # scalars:
-          #   ISODateTime:
-          #     type: String/DateTime
-          #   JSON:
-          #     type: Map<String, dynamic>
-          namingSeparator: ""
+          copy_with: false
+          equal: false
+      mobx_codegen|mobx_generator:
+        enabled: true
+        generate_for:
+          include:
+            - lib/ui/**/**/controller/*.dart
+            - lib/global/**/controller/*.dart

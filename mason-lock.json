@@ -1,1 +1,1 @@
-{"bricks":{"global":{"path":"./.mason_templates/global/"},"page":{"path":"./.mason_templates/page/"},"controller":{"path":"./.mason_templates/controller/"}}}
+{"bricks":{"controller":{"path":"/home/user/course_app/.mason_templates/controller"},"global":{"path":"/home/user/course_app/.mason_templates/global"},"page":{"path":"/home/user/course_app/.mason_templates/page"},"model":{"path":"/home/user/course_app/.mason_templates/model"}}}

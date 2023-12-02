@@ -5,3 +5,5 @@ bricks:
     path: ".mason_templates\\page"
   controller:
     path: ".mason_templates\\controller"
+  model:
+    path: .mason_templates/model

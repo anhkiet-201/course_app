@@ -7,8 +7,7 @@ enum StorageBox {
   setting,
 
   /// The secure storage box.
-  secure,
-  ;
+  secure;
 
   /// Returns the name of the storage box.
   String get name {

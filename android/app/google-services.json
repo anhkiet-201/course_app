@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "151128183564",
+    "firebase_url": "https://kt-course-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "kt-course",
     "storage_bucket": "kt-course.appspot.com"
   },
@@ -12,7 +13,12 @@
           "package_name": "com.kt.anhkiet.kt_course"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "151128183564-j9ljrqirc25n8jmm1re7d1tg6cmqdl48.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAlWMCRQSyWZlwVYixf8nPCCCzt77b9UBQ"
@@ -20,7 +26,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151128183564-j9ljrqirc25n8jmm1re7d1tg6cmqdl48.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "151128183564-3rknsbh5id2f8a64rvqc4o504pi0l6vc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kt.anhkiet.ktCourse"
+              }
+            }
+          ]
         }
       }
     }
