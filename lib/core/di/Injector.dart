@@ -5,9 +5,9 @@ import 'package:kt_course/common/firebase_options.dart';
 import 'package:kt_course/core/data/network/impl/srevices/api_service_impl.dart';
 import 'package:kt_course/core/data/network/services/api_service.dart';
 import 'package:kt_course/core/navigation/navigator.dart';
-import 'package:kt_course/global/app/repository/app_repository.dart';
-import 'package:kt_course/global/app/repository/app_repository_impl.dart';
 import 'package:kt_course/app/navigation/navigator_impl.dart';
+// import 'package:kt_course/global/note/repository/note_repository.dart';
+// import 'package:kt_course/global/note/repository/note_repository_impl.dart';
 
 final injector = Injector();
 
@@ -37,7 +37,7 @@ class Injector {
   }
 
   _injectRepository() {
-    _getIt.registerLazySingleton<AppRepository>(AppRepositoryImpl.new);
+    // _getIt.registerLazySingleton<NoteRepository>(NoteRepositoryImpl.new);
   }
 
   _injectNavigator() {
