@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "151128183564-4br5l870v2dk85s59dhe2dqh3dkde355.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kt.anhkiet.kt_course",
+            "certificate_hash": "43679c7351db01fa085a4d01ed9616b987e110b1"
+          }
+        },
+        {
+          "client_id": "151128183564-tlsbiqi9bvnbi3504a88l8t5nuq8r21d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kt.anhkiet.kt_course",
+            "certificate_hash": "aa8d883ccdf5808bf6c5ab04194eac81829470cd"
+          }
+        },
+        {
           "client_id": "151128183564-j9ljrqirc25n8jmm1re7d1tg6cmqdl48.apps.googleusercontent.com",
           "client_type": 3
         }

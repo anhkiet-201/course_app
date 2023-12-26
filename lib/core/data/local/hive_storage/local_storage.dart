@@ -1,38 +1,18 @@
-/// An enum representing different storage boxes for local storage.
-enum StorageBox {
-  /// The default storage box.
-  defaultS,
-
-  /// The storage box for settings.
-  setting,
-
-  /// The secure storage box.
-  secure;
-
-  /// Returns the name of the storage box.
-  String get name {
-    switch (this) {
-      case StorageBox.defaultS:
-        return 'default';
-      case StorageBox.setting:
-        return 'setting';
-      case StorageBox.secure:
-        return 'secure';
-    }
-  }
-}
-
 /// A key-value pair for storing and retrieving data from local storage.
 class LocalStorageKey<T> {
   final String key;
-  final StorageBox box;
+  final String boxName;
 
   /// Creates a new [LocalStorageKey] with the given [key] and [isSecure] flag.
-  const LocalStorageKey(this.key, {this.box = StorageBox.defaultS});
+  const LocalStorageKey(this.key, {this.boxName = LocalStorage.defaultBox});
 }
 
 /// An interface for local storage.
 abstract class LocalStorage {
+  static const String defaultBox = 'default';
+  static const String settingsBox = 'settings';
+  static const String secureBox = 'secure';
+
   /// The version of the local storage.
   int get version;
 

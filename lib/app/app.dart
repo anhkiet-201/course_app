@@ -17,7 +17,7 @@ class App extends StatelessWidget {
             navigatorKey: nav.Navigator.navigationKey,
             debugShowCheckedModeBanner: false,
             title: 'Note',
-            themeMode: ThemeMode.system,
+            themeMode: ThemeMode.dark,
             theme: AppTheme.light(lightDynamic),
             darkTheme: AppTheme.dark(darkDynamic),
             home: Builder(builder: (ctx) {
@@ -30,9 +30,12 @@ class App extends StatelessWidget {
                       systemNavigationBarColor: Colors.transparent);
               return AnnotatedRegion<SystemUiOverlayStyle>(
                 value: systemOverlay,
-                child: Provider(
-                  create: (_) => SplashController(),
-                  child: const SplashPage(),
+                child: Scaffold(
+                  appBar: AppBar(),
+                  body: Provider(
+                    create: (_) => SplashController(),
+                    child: const SplashPage(),
+                  ),
                 ),
               );
             }));

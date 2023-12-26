@@ -41,6 +41,7 @@ class NavigatorImpl implements nav.Navigator {
     showTopSnackBar(
       overlay,
       Material(
+        color: Colors.transparent,
         child: Container(
           decoration: BoxDecoration(
               color: const Color.fromARGB(80, 85, 85, 85),

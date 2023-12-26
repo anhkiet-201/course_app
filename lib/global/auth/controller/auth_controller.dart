@@ -20,8 +20,8 @@ abstract class _AuthControllerBase extends BaseController with Store, AuthReposi
 
   @action
   loginWithGoogle() async {
+    final googleSignIn = GoogleSignIn.standard();
     try {
-      final googleSignIn = GoogleSignIn.standard();
       final googleAccount = await googleSignIn.signIn();
       if(googleAccount == null) {
         nav.showSnackBar(message: 'Login failure!');
@@ -33,10 +33,16 @@ abstract class _AuthControllerBase extends BaseController with Store, AuthReposi
         accessToken: googleSignInAuthentication.accessToken
       );
       loginProvider = GoogleLoginProvider(credential);
-      await authRepository.login(loginProvider!);
+      _login();
     } catch (e) {
+      googleSignIn.disconnect();
       nav.showSnackBar(message: 'Something is error!');
     }
+  }
+
+  _login() async {
+    await authRepository.login(loginProvider!);
+    
   }
 
   @action

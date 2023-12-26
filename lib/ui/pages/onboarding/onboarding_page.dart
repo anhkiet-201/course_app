@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kt_course/common/color/color.dart';
 import 'package:kt_course/common/extensions/hero_animation_extensions.dart';
 import 'package:kt_course/core/base/controller/controller_provider.dart';
 import 'package:kt_course/ui/pages/onboarding/controller/onboarding_controller.dart';
@@ -55,9 +56,12 @@ class OnboardingPage extends StatelessWidget
                       const SizedBox(
                         width: 10,
                       ),
-                      const Text(
+                      Text(
                         'Tiếp tục với google',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: context.color.onBackground
+                        ),
                       )
                     ],
                   ));
