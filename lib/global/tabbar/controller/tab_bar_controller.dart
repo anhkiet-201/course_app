@@ -55,11 +55,11 @@ enum TabBarPredefine {
     account => 3
   };
 
-  String? get title => switch(this) {
+  String get title => switch(this) {
     discover => 'Discover',
     search => 'Search',
     study => 'Study',
-    account => null
+    _ => ''
   };
 
   IconData get icon => switch(this) {

@@ -3,7 +3,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:kt_course/common/color/color.dart';
 import 'package:kt_course/global/auth/auth_controller_provider.dart';
+import 'package:kt_course/global/tabbar/controller/tab_bar_controller.dart';
 import 'package:kt_course/global/tabbar/tab_bar_controller_provider.dart';
+import 'package:kt_course/ui/widgets/avatar/avatar.dart';
 
 class TabBar extends StatelessWidget
     with TabBarControllerProvider, AuthControllerProvider {
@@ -34,76 +36,21 @@ class TabBar extends StatelessWidget
             builder: (context) {
               return GNav(
                 tabs: [
-                  GButton(
-                    gap: gap,
-                    iconActiveColor: context.color.primary,
-                    iconColor: context.color.primary.withOpacity(.3),
-                    textColor: context.color.primary,
-                    backgroundColor:
-                        context.color.onPrimaryContainer.withOpacity(.2),
-                    iconSize: 24,
-                    padding: padding,
-                    icon: Icons.home,
-                    text: 'Home',
-                  ),
-                  GButton(
-                    gap: gap,
-                    iconActiveColor: context.color.primary,
-                    iconColor: context.color.primary.withOpacity(.3),
-                    textColor: context.color.primary,
-                    backgroundColor:
-                        context.color.onPrimaryContainer.withOpacity(.2),
-                    iconSize: 24,
-                    padding: padding,
-                    icon: Icons.headphones,
-                    // leading: selectedIndex == 1 || badge == 0
-                    //     ? null
-                    //     : Badge(
-                    //         badgeColor: Colors.red.shade100,
-                    //         elevation: 0,
-                    //         position: BadgePosition.topEnd(top: -12, end: -12),
-                    //         badgeContent: Text(
-                    //           badge.toString(),
-                    //           style: TextStyle(color: Colors.red.shade900),
-                    //         ),
-                    //         child: Icon(
-                    //           LineIcons.heart,
-                    //           color: selectedIndex == 1
-                    //               ? Colors.pink
-                    //               : Colors.black,
-                    //         ),
-                    //       ),
-                  ),
-                  GButton(
-                    gap: gap,
-                    iconActiveColor: context.color.primary,
-                    iconColor: context.color.primary.withOpacity(.3),
-                    textColor: context.color.primary,
-                    backgroundColor:
-                        context.color.onPrimaryContainer.withOpacity(.2),
-                    iconSize: 24,
-                    padding: padding,
-                    icon: Icons.search,
-                    text: 'Search',
-                  ),
-                  GButton(
-                    gap: gap,
-                    iconActiveColor: context.color.primary,
-                    iconColor: context.color.primary.withOpacity(.3),
-                    textColor: context.color.primary,
-                    backgroundColor:
-                        context.color.onPrimaryContainer.withOpacity(.2),
-                    iconSize: 24,
-                    padding: padding,
-                    icon: Icons.percent,
-                    leading: CircleAvatar(
-                      radius: 12,
-                      backgroundImage: NetworkImage(
-                        authController.user.avatar ?? '',
-                      ),
-                    ),
-                    text: authController.user.displayName ?? '',
-                  )
+                  ...tabbarController.listTab.map((e) {
+                    return GButton(
+                      gap: gap,
+                      iconActiveColor: context.color.primary,
+                      iconColor: context.color.primary.withOpacity(.3),
+                      textColor: context.color.primary,
+                      backgroundColor:
+                          context.color.onPrimaryContainer.withOpacity(.2),
+                      iconSize: 24,
+                      padding: padding,
+                      icon: e.icon,
+                      leading: e == TabBarPredefine.account ? const Avatar(radius: 12) : null,
+                      text: e == TabBarPredefine.account ? authController.user.displayName ?? '' : e.title,
+                    );
+                  })
                 ],
                 selectedIndex: tabbarController.currentTab.intValue,
                 onTabChange: tabbarController.changeTab,
