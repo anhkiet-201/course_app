@@ -7,7 +7,9 @@ class AppTheme {
   static ThemeData _themeData(ColorScheme colorScheme, bool isLightTheme) {
     final theme = ThemeData(
       useMaterial3: true,
-      textTheme: GoogleFonts.openSansTextTheme()
+      textTheme: GoogleFonts.openSansTextTheme().apply(
+        bodyColor: colorScheme.onBackground
+      ),
     );
     return theme.copyWith(
         colorScheme: colorScheme,
@@ -22,8 +24,9 @@ class AppTheme {
   }
 
   static ThemeData dark(ColorScheme? dynamicColorScheme) {
-    final colorScheme = dynamicColorScheme ??
-        ColorScheme.fromSeed(seedColor: const Color(0xff131314));
+    final colorScheme = ColorScheme.fromSeed(
+      brightness: Brightness.dark, 
+      seedColor: const Color(0xff131314));
     return _themeData(colorScheme, false);
   }
 }
