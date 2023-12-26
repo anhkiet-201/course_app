@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget
     );
   }
 
-  Widget get _pageView => Observer(builder: (context) {
+  Widget get _pageView => Builder(builder: (context) {
     return PageView(
       physics: const NeverScrollableScrollPhysics(),
       controller: tabbarController.pageController,

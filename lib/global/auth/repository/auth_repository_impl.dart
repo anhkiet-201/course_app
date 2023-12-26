@@ -1,4 +1,3 @@
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kt_course/core/data/network/firebase/firebase_provider.dart';
 import 'package:kt_course/core/data/network/model/auth/login_provider.dart';
 import 'package:kt_course/core/data/network/model/user/user.dart';
@@ -13,7 +12,6 @@ class AuthRepositoryImpl with ApiServiceProvider, FirebaseAuthProvider implement
 
   @override
   Future<bool> logout() async {
-    GoogleSignIn().disconnect();
     return apiService.logout();
   }
   

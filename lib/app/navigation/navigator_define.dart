@@ -32,7 +32,7 @@ class NavigationDefine {
     _navigator.push(
       Provider(
         create: (_) => HomeController(),
-        child: HomePage(),
+        child: const HomePage(),
       ),
       type: PushType.replaceAll
     );
