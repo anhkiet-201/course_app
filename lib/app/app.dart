@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kt_course/common/theme/app_theme.dart';
 import 'package:kt_course/core/navigation/navigator.dart' as nav;
-import 'package:kt_course/ui/pages/onboarding/controller/onboarding_controller.dart';
-import 'package:kt_course/ui/pages/onboarding/onboarding_page.dart';
+import 'package:kt_course/ui/pages/splash/controller/splash_controller.dart';
+import 'package:kt_course/ui/pages/splash/splash_page.dart';
 import 'package:provider/provider.dart';
 
 class App extends StatelessWidget {
@@ -31,8 +31,8 @@ class App extends StatelessWidget {
               return AnnotatedRegion<SystemUiOverlayStyle>(
                 value: systemOverlay,
                 child: Provider(
-                  create: (_) => OnboardingController(),
-                  child: const OnboardingPage(),
+                  create: (_) => SplashController(),
+                  child: const SplashPage(),
                 ),
               );
             }));

@@ -6,6 +6,8 @@ import 'package:kt_course/core/data/network/impl/srevices/api_service_impl.dart'
 import 'package:kt_course/core/data/network/services/api_service.dart';
 import 'package:kt_course/core/navigation/navigator.dart';
 import 'package:kt_course/app/navigation/navigator_impl.dart';
+import 'package:kt_course/global/app/controller/app_controller.dart';
+import 'package:kt_course/global/auth/controller/auth_controller.dart';
 // import 'package:kt_course/global/note/repository/note_repository.dart';
 // import 'package:kt_course/global/note/repository/note_repository_impl.dart';
 
@@ -20,6 +22,7 @@ class Injector {
     _injectServices();
     _injectRepository();
     _injectNavigator();
+    _injectGlobalController();
   }
 
   _initializeEnv() async {
@@ -42,6 +45,11 @@ class Injector {
 
   _injectNavigator() {
     _getIt.registerLazySingleton<Navigator>(NavigatorImpl.new);
+  }
+
+  _injectGlobalController() {
+    _getIt.registerLazySingleton<AppController>(AppController.new);
+    _getIt.registerLazySingleton<AuthController>(AuthController.new);
   }
 
   T get<T extends Object>({String? instanceName}) {

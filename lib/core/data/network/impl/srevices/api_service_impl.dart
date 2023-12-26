@@ -1,15 +1,20 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:kt_course/core/data/network/firebase/firebase_provider.dart';
-import 'package:kt_course/core/data/network/model/user/user.dart' as u;
-import 'package:kt_course/core/data/network/services/api_service.dart';
+import 'package:kt_course/core/data/network/model/auth/login_provider.dart';
+
+import '../../firebase/firebase_provider.dart';
+import '../../model/user/user.dart' as u;
+import '../../services/api_service.dart';
 
 
 class ApiServiceImpl with FirebaseAuthProvider implements ApiService {
   @override
-  Future<bool> login(AuthCredential credential) async {
-    final userCredential = await auth.signInWithCredential(credential);
-    return userCredential.user != null;
+  Future<bool> login(LoginProvider provider) async {
+    switch(provider) {
+      case GoogleLoginProvider _:
+        final userCredential = await auth.signInWithCredential(provider.credential);
+        return userCredential.user != null;
+      default:
+        return false;
+    }
   }
 
   @override
@@ -27,14 +32,11 @@ class ApiServiceImpl with FirebaseAuthProvider implements ApiService {
   @override
   Future<bool> logout() async {
     try {
-      await GoogleSignIn().disconnect();
+      // await GoogleSignIn().disconnect();
       await auth.signOut();
     } catch(_) {
       return false;
     }
     return true;
   }
-  
-  @override
-  bool get isLogin => auth.currentUser != null;
 }

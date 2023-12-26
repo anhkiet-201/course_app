@@ -6,10 +6,47 @@ enum PushType {
   replaceAll;
 }
 
+enum NavigatorAnimationType {
+  fade,
+  slide,
+  scale,
+  normal;
+
+  Widget builder(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) {
+    switch (this) {
+      case fade:
+        return FadeTransition(
+          opacity: animation,
+          child: child,
+        );
+      case slide:
+        return SlideTransition(
+          position: animation.drive(Tween<Offset>(
+              begin: const Offset(1, 0), end: const Offset(0, 0))),
+          child: child,
+        );
+      case scale:
+        return ScaleTransition(
+          scale: animation,
+          child: child,
+        );
+      case normal:
+        return ScaleTransition(
+          scale: animation,
+          child: FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+        );
+    }
+  }
+}
+
 abstract interface class Navigator {
   static final navigationKey = GlobalKey<NavigatorState>();
   static BuildContext? get globalContext => navigationKey.currentContext;
-  
+
   Future<T?>? push<T>(Widget page, {PushType type});
 
   void pop({Object? result});
