@@ -13,3 +13,4 @@ abstract class _HomeControllerBase extends BaseController with Store {
 
   }
 }
+

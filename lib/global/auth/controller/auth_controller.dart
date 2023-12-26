@@ -7,6 +7,8 @@ import 'package:kt_course/core/data/network/model/auth/login_provider.dart';
 import 'package:kt_course/global/auth/auth_repository_provider.dart';
 import 'package:mobx/mobx.dart';
 import 'package:kt_course/core/base/controller/base_controller.dart';
+import 'package:kt_course/core/data/network/model/user/user.dart' as u;
+
 part 'auth_controller.g.dart';
 
 class AuthController = _AuthControllerBase with _$AuthController;
@@ -50,6 +52,8 @@ abstract class _AuthControllerBase extends BaseController with Store, AuthReposi
     loginProvider = null;
     await authRepository.logout();
   }
+
+  u.User get user => authRepository.user;
 
   @override
   FutureOr onDispose() {

@@ -17,6 +17,7 @@ import 'package:kt_course/global/app/repository/app_repository_impl.dart';
 import 'package:kt_course/global/auth/controller/auth_controller.dart';
 import 'package:kt_course/global/auth/repository/auth_repository.dart';
 import 'package:kt_course/global/auth/repository/auth_repository_impl.dart';
+import 'package:kt_course/global/tabbar/controller/tab_bar_controller.dart';
 
 final injector = Injector();
 
@@ -59,6 +60,7 @@ class Injector {
   _injectGlobalController() {
     _getIt.registerLazySingleton<AppController>(AppController.new);
     _getIt.registerLazySingleton<AuthController>(AuthController.new);
+    _getIt.registerLazySingleton<TabBarController>(TabBarController.new);
   }
 
   _injectLocalStorage() async {
