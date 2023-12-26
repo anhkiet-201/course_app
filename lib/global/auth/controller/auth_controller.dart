@@ -36,7 +36,7 @@ abstract class _AuthControllerBase extends BaseController with Store, AuthReposi
         accessToken: googleSignInAuthentication.accessToken
       );
       loginProvider = GoogleLoginProvider(credential);
-      _login();
+      await _login();
     } catch (e) {
       _googleSignIn.disconnect();
       nav.showSnackBar(message: 'Something is error!');
