@@ -14,31 +14,28 @@ class App extends StatelessWidget {
     return DynamicColorBuilder(
       builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
         return MaterialApp(
-            navigatorKey: nav.Navigator.navigationKey,
-            debugShowCheckedModeBanner: false,
-            title: 'Note',
-            themeMode: ThemeMode.dark,
-            theme: AppTheme.light(lightDynamic),
-            darkTheme: AppTheme.dark(darkDynamic),
-            home: Builder(builder: (ctx) {
-              final systemOverlay = Theme.of(ctx).brightness == Brightness.light
-                  ? SystemUiOverlayStyle.dark.copyWith(
-                      statusBarColor: Colors.transparent,
-                      systemNavigationBarColor: Colors.transparent)
-                  : SystemUiOverlayStyle.light.copyWith(
-                      statusBarColor: Colors.transparent,
-                      systemNavigationBarColor: Colors.transparent);
-              return AnnotatedRegion<SystemUiOverlayStyle>(
-                value: systemOverlay,
-                child: Scaffold(
-                  appBar: AppBar(),
-                  body: Provider(
-                    create: (_) => SplashController(),
-                    child: const SplashPage(),
-                  ),
-                ),
-              );
-            }));
+          navigatorKey: nav.Navigator.navigationKey,
+          debugShowCheckedModeBanner: false,
+          title: 'Note',
+          themeMode: ThemeMode.dark,
+          theme: AppTheme.light(lightDynamic),
+          darkTheme: AppTheme.dark(darkDynamic),
+          home: Provider(
+            create: (_) => SplashController(),
+            child: const SplashPage(),
+          ),
+          builder: (ctx, child) {
+            final systemOverlay = Theme.of(ctx).brightness == Brightness.light
+                ? SystemUiOverlayStyle.dark.copyWith(
+                    statusBarColor: Colors.transparent,
+                    systemNavigationBarColor: Colors.transparent)
+                : SystemUiOverlayStyle.light.copyWith(
+                    statusBarColor: Colors.transparent,
+                    systemNavigationBarColor: Colors.transparent);
+            return AnnotatedRegion<SystemUiOverlayStyle>(
+                value: systemOverlay, child: child!);
+          },
+        );
       },
     );
   }
@@ -61,11 +58,13 @@ class ColorSchemeListView extends StatelessWidget {
           _buildColorItem('secondary', colorScheme.secondary),
           _buildColorItem('onSecondary', colorScheme.onSecondary),
           _buildColorItem('secondaryContainer', colorScheme.secondaryContainer),
-          _buildColorItem('onSecondaryContainer', colorScheme.onSecondaryContainer),
+          _buildColorItem(
+              'onSecondaryContainer', colorScheme.onSecondaryContainer),
           _buildColorItem('tertiary', colorScheme.tertiary),
           _buildColorItem('onTertiary', colorScheme.onTertiary),
           _buildColorItem('tertiaryContainer', colorScheme.tertiaryContainer),
-          _buildColorItem('onTertiaryContainer', colorScheme.onTertiaryContainer),
+          _buildColorItem(
+              'onTertiaryContainer', colorScheme.onTertiaryContainer),
           _buildColorItem('error', colorScheme.error),
           _buildColorItem('onError', colorScheme.onError),
           _buildColorItem('errorContainer', colorScheme.errorContainer),
