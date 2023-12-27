@@ -40,6 +40,17 @@ mixin _$TabBarController on _TabBarControllerBase, Store {
   }
 
   @override
+  dynamic reset() {
+    final _$actionInfo = _$_TabBarControllerBaseActionController.startAction(
+        name: '_TabBarControllerBase.reset');
+    try {
+      return super.reset();
+    } finally {
+      _$_TabBarControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 currentTab: ${currentTab}

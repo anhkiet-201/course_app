@@ -5,6 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kt_course/app/navigation/navigator_define.dart';
 import 'package:kt_course/core/data/network/model/auth/login_provider.dart';
 import 'package:kt_course/global/auth/auth_repository_provider.dart';
+import 'package:kt_course/global/tabbar/tab_bar_controller_provider.dart';
 import 'package:mobx/mobx.dart';
 import 'package:kt_course/core/base/controller/base_controller.dart';
 import 'package:kt_course/core/data/network/model/user/user.dart' as u;
@@ -13,7 +14,7 @@ part 'auth_controller.g.dart';
 
 class AuthController = _AuthControllerBase with _$AuthController;
 
-abstract class _AuthControllerBase extends BaseController with Store, AuthRepositoryProvider {
+abstract class _AuthControllerBase extends BaseController with Store, AuthRepositoryProvider, TabBarControllerProvider {
 
   @computed
   bool get isLogin => authRepository.isLogin;
@@ -54,6 +55,7 @@ abstract class _AuthControllerBase extends BaseController with Store, AuthReposi
     await authRepository.logout();
     await _googleSignIn.disconnect();
     nav.toOnBoading();
+    tabbarController.reset();
   }
 
   u.User get user => authRepository.user;

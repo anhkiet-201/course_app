@@ -36,6 +36,11 @@ abstract class _TabBarControllerBase extends BaseController with Store {
     pageController.animateToPage(tabIndex, duration: const Duration(milliseconds: 300), curve: Curves.linear);
   }
 
+  @action
+  reset() {
+    changeTab(0);
+  }
+
   @override
   FutureOr onDispose() {
     pageController.dispose();
