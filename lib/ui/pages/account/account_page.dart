@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kt_course/app/navigation/navigator_define.dart';
 import 'package:kt_course/common/color/color.dart';
 import 'package:kt_course/common/extensions/context_extensions.dart';
 import 'package:kt_course/core/base/controller/controller_provider.dart';
@@ -86,7 +87,7 @@ class AccountPage extends StatelessWidget
 
   AbstractSettingsSection get _optionsList => SettingsSectionCustom(
         tiles: [
-          SettingOptionsButton(title: 'Settings', icon: const Icon(Icons.settings), value: 'Eng', onPress: () {},)
+          SettingOptionsButton(title: 'Settings', icon: const Icon(Icons.settings), onPress: nav.toSettings)
         ],
       );
   

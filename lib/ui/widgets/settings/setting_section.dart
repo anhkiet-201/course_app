@@ -43,7 +43,7 @@ class SettingsSectionCustom extends AbstractSettingsSection {
 
   Widget get _renderTitle => Builder(builder: (context) {
         if (title.isNotEmpty) {
-          return Text(title!.toUpperCase(),
+          return Text(title.toUpperCase(),
               style: TextStyle(
                 color: context.color.onBackground,
                 fontSize: 14,

@@ -47,7 +47,7 @@ abstract interface class Navigator {
   static final navigationKey = GlobalKey<NavigatorState>();
   static BuildContext? get globalContext => navigationKey.currentContext;
 
-  Future<T?>? push<T>(Widget page, {PushType type});
+  Future<T?>? push<T>(Widget page, {PushType type, NavigatorAnimationType animationType});
 
   void pop({Object? result});
 

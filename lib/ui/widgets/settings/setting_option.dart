@@ -9,6 +9,7 @@ class SettingOptionsButton extends AbstractSettingsTile {
   final String title;
   final Widget? trailing;
   final String? value;
+  final Color? color;
 
   const SettingOptionsButton(
       {super.key,
@@ -16,7 +17,8 @@ class SettingOptionsButton extends AbstractSettingsTile {
       this.icon,
       this.onPress,
       this.trailing,
-      this.value});
+      this.value,
+      this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,8 @@ class SettingOptionsButton extends AbstractSettingsTile {
       onPressed: onPress,
       style: TextButton.styleFrom(
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          foregroundColor: color ?? context.color.onBackground),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: Row(
@@ -42,7 +45,7 @@ class SettingOptionsButton extends AbstractSettingsTile {
                 Text(title,
                     style: const TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                     )),
               ],
             ),
@@ -53,7 +56,7 @@ class SettingOptionsButton extends AbstractSettingsTile {
                 child: Text(value!,
                     style: const TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w600,
                     )),
               ),
             trailing ??

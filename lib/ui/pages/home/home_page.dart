@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:kt_course/core/base/controller/controller_provider.dart';
 import 'package:kt_course/global/tabbar/tab_bar_controller_provider.dart';
 import 'package:kt_course/ui/pages/home/controller/home_controller.dart';

@@ -28,3 +28,4 @@ targets:
           include:
             - lib/ui/**/**/controller/*.dart
             - lib/global/**/controller/*.dart
+            - lib/core/reactive/**/controller/*.dart

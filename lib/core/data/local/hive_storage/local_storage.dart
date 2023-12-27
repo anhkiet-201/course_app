@@ -3,8 +3,12 @@ class LocalStorageKey<T> {
   final String key;
   final String boxName;
 
-  /// Creates a new [LocalStorageKey] with the given [key] and [isSecure] flag.
+  /// Creates a new [LocalStorageKey] with the given [key] and [boxName] flag.
   const LocalStorageKey(this.key, {this.boxName = LocalStorage.defaultBox});
+
+  const LocalStorageKey.setting(this.key) : boxName = LocalStorage.settingsBox;
+
+  const LocalStorageKey.secure(this.key) : boxName = LocalStorage.secureBox;
 }
 
 /// An interface for local storage.

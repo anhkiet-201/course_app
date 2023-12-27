@@ -11,12 +11,17 @@ import 'package:kt_course/core/data/network/impl/srevices/api_service_impl.dart'
 import 'package:kt_course/core/data/network/services/api_service.dart';
 import 'package:kt_course/core/navigation/navigator.dart';
 import 'package:kt_course/app/navigation/navigator_impl.dart';
+import 'package:kt_course/core/reactive/setting_value/repository/setting_value_repository.dart';
+import 'package:kt_course/core/reactive/setting_value/repository/setting_value_repository_impl.dart';
 import 'package:kt_course/global/app/controller/app_controller.dart';
 import 'package:kt_course/global/app/repository/app_repository.dart';
 import 'package:kt_course/global/app/repository/app_repository_impl.dart';
 import 'package:kt_course/global/auth/controller/auth_controller.dart';
 import 'package:kt_course/global/auth/repository/auth_repository.dart';
 import 'package:kt_course/global/auth/repository/auth_repository_impl.dart';
+import 'package:kt_course/global/settings/controller/settings_controller.dart';
+import 'package:kt_course/global/settings/repository/settings_repository.dart';
+import 'package:kt_course/global/settings/repository/settings_repository_impl.dart';
 import 'package:kt_course/global/tabbar/controller/tab_bar_controller.dart';
 
 final injector = Injector();
@@ -51,6 +56,8 @@ class Injector {
   _injectRepository() {
     _getIt.registerLazySingleton<AuthRepository>(AuthRepositoryImpl.new);
     _getIt.registerLazySingleton<AppRepository>(AppRepositoryImpl.new);
+    _getIt.registerLazySingleton<SettingValueRepository>(SettingValueRepositoryImpl.new);
+    _getIt.registerLazySingleton<SettingsRepository>(SettingsRepositoryImpl.new);
   }
 
   _injectNavigator() {
@@ -61,6 +68,7 @@ class Injector {
     _getIt.registerLazySingleton<AppController>(AppController.new);
     _getIt.registerLazySingleton<AuthController>(AuthController.new);
     _getIt.registerLazySingleton<TabBarController>(TabBarController.new);
+    _getIt.registerLazySingleton<SettingsController>(SettingsController.new);
   }
 
   _injectLocalStorage() async {
