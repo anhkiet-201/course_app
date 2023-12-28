@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:kt_course/common/color/color.dart';
+import 'package:kt_course/common/extensions/context_extensions.dart';
 import 'package:kt_course/core/navigation/navigator.dart' as nav;
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -16,6 +18,7 @@ class NavigatorImpl implements nav.Navigator {
       nav.NavigatorAnimationType animationType =
           nav.NavigatorAnimationType.normal}) {
     final pageRoute = PageRouteBuilder<T>(
+
         /// [opaque] set false, then the detail page can see the home page screen.
         opaque: false,
         transitionDuration: duration,
@@ -28,8 +31,8 @@ class NavigatorImpl implements nav.Navigator {
         nav.Navigator.navigationKey.currentState?.push(pageRoute),
       nav.PushType.replace =>
         nav.Navigator.navigationKey.currentState?.pushReplacement(pageRoute),
-      nav.PushType.replaceAll =>
-        nav.Navigator.navigationKey.currentState?.pushAndRemoveUntil(pageRoute, (_) => false),
+      nav.PushType.replaceAll => nav.Navigator.navigationKey.currentState
+          ?.pushAndRemoveUntil(pageRoute, (_) => false),
     };
   }
 
@@ -85,5 +88,64 @@ class NavigatorImpl implements nav.Navigator {
         ),
       ),
     );
+  }
+
+  @override
+  Future<T?>? showBottomSheet<T>(Widget page,
+      {double maxChildSize = 0.9, 
+      bool showDragHandle = true, 
+      Color? backgroundColor,
+      double initialChildSize = 0.9,
+      bool snap = true,
+      String title = '',
+      List<double>? snapSizes}) {
+    final context = nav.Navigator.globalContext;
+    if (context == null) return null;
+    return showModalBottomSheet(
+        backgroundColor: Colors.transparent,
+        context: context,
+        elevation: 0,
+        isScrollControlled: true,
+        useRootNavigator: true,
+        useSafeArea: true,
+        isDismissible: true,
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25))),
+        builder: (ctx) {
+          return ClipRRect(
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(25)),
+            child: Container(
+              color: backgroundColor ?? context.color.background,
+              child: DraggableScrollableSheet(
+                expand: false,
+                snap: snap,
+                snapSizes: snapSizes,
+                maxChildSize: maxChildSize,
+                minChildSize: 0.25,
+                initialChildSize: initialChildSize,
+                builder: (_, ScrollController scrollController) {
+                  return Scaffold(
+                    backgroundColor: Colors.transparent,
+                    appBar: AppBar(
+                      title: Text(
+                        title,
+                        style: context.textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      centerTitle: true,
+                      leading: const CloseButton(),
+                      ),
+                    body: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    controller: scrollController,
+                    child: page,
+                  ),
+                  );
+                },
+              ),
+            ),
+          );
+        });
   }
 }

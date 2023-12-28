@@ -47,11 +47,21 @@ abstract interface class Navigator {
   static final navigationKey = GlobalKey<NavigatorState>();
   static BuildContext? get globalContext => navigationKey.currentContext;
 
-  Future<T?>? push<T>(Widget page, {PushType type, NavigatorAnimationType animationType});
+  Future<T?>? push<T>(Widget page,
+      {PushType type, NavigatorAnimationType animationType});
 
   void pop({Object? result});
 
   void showSnackBar({String? message, dynamic error});
+
+  Future<T?>? showBottomSheet<T>(Widget page,
+      {double maxChildSize,
+      bool showDragHandle,
+      Color? backgroundColor,
+      double initialChildSize,
+      bool snap,
+      String title,
+      List<double>? snapSizes});
 }
 
 

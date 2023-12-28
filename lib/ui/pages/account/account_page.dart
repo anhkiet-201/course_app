@@ -6,6 +6,7 @@ import 'package:kt_course/core/base/controller/controller_provider.dart';
 import 'package:kt_course/global/auth/auth_controller_provider.dart';
 import 'package:kt_course/ui/pages/account/controller/account_controller.dart';
 import 'package:kt_course/ui/widgets/avatar/avatar.dart';
+import 'package:kt_course/ui/widgets/settings/custom_setting_list.dart';
 import 'package:kt_course/ui/widgets/settings/setting_option.dart';
 import 'package:kt_course/ui/widgets/settings/setting_section.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -16,22 +17,8 @@ class AccountPage extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    final settingTheme = SettingsThemeData(
-      settingsListBackground: context.color.background,
-      settingsSectionBackground: Colors.transparent,
-      leadingIconsColor: context.color.onBackground,
-      dividerColor: context.color.background,
-      tileHighlightColor: Colors.transparent,
-    );
     return Scaffold(
-      body: SettingsList(
-        platform: DevicePlatform.iOS,
-        lightTheme: settingTheme,
-        darkTheme: settingTheme,
-        applicationType: ApplicationType.cupertino,
-        contentPadding: EdgeInsets.only(top: context.mediaQueryPadding.top),
-        physics: const BouncingScrollPhysics(
-            parent: AlwaysScrollableScrollPhysics()),
+      body: CustomSettingList(
         sections: [
           _info,
           _optionsList,
