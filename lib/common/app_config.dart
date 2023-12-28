@@ -8,4 +8,5 @@ class AppConfig {
   static final firebaseMessagingSenderId = dotenv.get('FIREBASE_MESSAGING_SENDER_ID');
   static final firebaseProjectId = dotenv.get('FIREBASE_PROJECT_ID');
   static final firebaseStorageBucket = dotenv.get('FIREBASE_STORAGE_BUCKET');
+  static final sendbirdChatAppId = dotenv.get('SEND_BIRD_APP_ID');
 }

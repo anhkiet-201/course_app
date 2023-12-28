@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:kt_course/common/app_config.dart';
 import 'package:kt_course/common/firebase_options.dart';
 import 'package:kt_course/core/data/local/hive_storage/local_storage.dart';
 import 'package:kt_course/core/data/local/impl/local_starage_impl.dart';
@@ -23,6 +24,7 @@ import 'package:kt_course/global/settings/controller/settings_controller.dart';
 import 'package:kt_course/global/settings/repository/settings_repository.dart';
 import 'package:kt_course/global/settings/repository/settings_repository_impl.dart';
 import 'package:kt_course/global/tabbar/controller/tab_bar_controller.dart';
+import 'package:sendbird_chat_sdk/sendbird_chat_sdk.dart';
 
 final injector = Injector();
 
@@ -36,11 +38,16 @@ class Injector {
     _injectRepository();
     _injectNavigator();
     _injectGlobalController();
+    _initializeSendBirdChat();
     await _injectLocalStorage();
   }
 
   _initializeEnv() async {
     await dotenv.load(fileName: ".env");
+  }
+
+  _initializeSendBirdChat() async {
+    SendbirdChat.init(appId: AppConfig.sendbirdChatAppId);
   }
 
   _initializeFirebase() async {
