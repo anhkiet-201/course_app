@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kt_course/common/color/color.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -41,7 +42,7 @@ class SettingOptionsButton extends AbstractSettingsTile {
                     padding: const EdgeInsets.only(right: 12),
                     child: icon!,
                   ),
-                Text(title,
+                Text(title.tr(),
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -52,7 +53,7 @@ class SettingOptionsButton extends AbstractSettingsTile {
             if (value != null)
               Padding(
                 padding: const EdgeInsets.only(right: 12),
-                child: Text(value!,
+                child: Text(value!.tr(),
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,

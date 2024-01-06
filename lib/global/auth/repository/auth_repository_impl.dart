@@ -1,23 +1,20 @@
-import 'package:kt_course/core/data/network/firebase/firebase_provider.dart';
-import 'package:kt_course/core/data/network/model/auth/login_provider.dart';
-import 'package:kt_course/core/data/network/model/user/user.dart';
 import 'package:kt_course/core/services/services_provider.dart';
 import 'package:kt_course/global/auth/repository/auth_repository.dart';
 
-class AuthRepositoryImpl with ApiServiceProvider, FirebaseAuthProvider implements AuthRepository {
+class AuthRepositoryImpl with ApiServiceProvider implements AuthRepository {
   @override
-  Future<bool> login(LoginProvider provider) async {
-    return apiService.login(provider);
+  Future<bool> login() async {
+    return true;
   }
 
   @override
   Future<bool> logout() async {
-    return apiService.logout();
+    return true;
   }
   
   @override
-  bool get isLogin => auth.currentUser != null;
+  bool get isLogin => true;
 
   @override
-  User get user => apiService.getCurrentuser();
+  String get user => 'Anh Kiet';
 }

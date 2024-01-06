@@ -10,20 +10,13 @@ part of 'setting_options_sheet_controller.dart';
 
 mixin _$SettingOptionsSheetController<T>
     on _SettingOptionsSheetControllerBase<T>, Store {
-  late final _$_SettingOptionsSheetControllerBaseActionController =
-      ActionController(
-          name: '_SettingOptionsSheetControllerBase', context: context);
+  late final _$onChangeValueAsyncAction = AsyncAction(
+      '_SettingOptionsSheetControllerBase.onChangeValue',
+      context: context);
 
   @override
-  dynamic onChangeValue(SettingOptionsSelectSheetItem<dynamic> item) {
-    final _$actionInfo = _$_SettingOptionsSheetControllerBaseActionController
-        .startAction(name: '_SettingOptionsSheetControllerBase.onChangeValue');
-    try {
-      return super.onChangeValue(item);
-    } finally {
-      _$_SettingOptionsSheetControllerBaseActionController
-          .endAction(_$actionInfo);
-    }
+  Future onChangeValue(SettingOptionsSelectSheetItem<dynamic> item) {
+    return _$onChangeValueAsyncAction.run(() => super.onChangeValue(item));
   }
 
   @override

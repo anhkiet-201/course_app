@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:kt_course/common/color/color.dart';
@@ -41,7 +42,7 @@ class SettingOptionsSelectSheet<T> extends StatelessWidget
                             child: e.icon,
                           ),
                         Text(
-                          e.title,
+                          e.title.tr(),
                           style: context.textTheme.titleMedium
                               ?.copyWith(fontWeight: FontWeight.w600),
                         ),

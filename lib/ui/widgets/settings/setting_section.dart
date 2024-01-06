@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kt_course/common/color/color.dart';
 import 'package:kt_course/common/extensions/context_extensions.dart';
@@ -47,8 +48,8 @@ class SettingsSectionCustom extends AbstractSettingsSection {
   Widget get _renderTitle => Builder(builder: (context) {
         if (title.isNotEmpty) {
           return Padding(
-            padding: const EdgeInsets.only(left: 12),
-            child: Text(title.toUpperCase(),
+            padding: const EdgeInsets.only(left: 12, top: 12),
+            child: Text(title.tr().toUpperCase(),
                 style: context.textTheme.labelMedium
                     ?.copyWith(fontWeight: FontWeight.bold)),
           );

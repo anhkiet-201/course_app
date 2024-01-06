@@ -21,13 +21,13 @@ abstract class _SettingValueBase<T> extends BaseController
   T get value => _value;
 
   @action
-  void updateValue(T? newValue) {
+  Future<void> updateValue(T? newValue) async {
     final previousValue = _value;
     try {
       if (newValue is AbstractSettingOptions) {
-        settingvalueRepository.save(key, newValue.rawValue);
+        await settingvalueRepository.save(key, newValue.rawValue);
       } else {
-        settingvalueRepository.save(key, newValue);
+        await settingvalueRepository.save(key, newValue);
       }
       _value = newValue ?? _initValue;
     } catch (error, stackTrace) {

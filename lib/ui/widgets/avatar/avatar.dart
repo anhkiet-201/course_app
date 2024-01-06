@@ -9,7 +9,7 @@ class Avatar extends StatelessWidget with AuthControllerProvider {
     return CircleAvatar(
       radius: radius,
       backgroundImage: NetworkImage(
-        authController.user.avatar ?? '',
+        'https://www.oca.edu.vn/uploads/images/info/con-meo-tieng-trung-la-gi.png',
       ),
     );
   }

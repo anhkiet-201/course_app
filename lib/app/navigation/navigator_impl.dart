@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kt_course/common/color/color.dart';
 import 'package:kt_course/common/extensions/context_extensions.dart';
@@ -97,7 +98,7 @@ class NavigatorImpl implements nav.Navigator {
       Color? backgroundColor,
       double initialChildSize = 0.9,
       bool snap = true,
-      String title = '',
+      String? title,
       List<double>? snapSizes}) {
     final context = nav.Navigator.globalContext;
     if (context == null) return null;
@@ -127,11 +128,15 @@ class NavigatorImpl implements nav.Navigator {
                   return Scaffold(
                     backgroundColor: Colors.transparent,
                     appBar: AppBar(
-                      title: Text(
-                        title,
-                        style: context.textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold
-                        ),
+                      title: Builder(
+                        builder: (titleContext) {
+                          return Text(
+                            title?.tr(context: titleContext) ?? '',
+                            style: context.textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold
+                            ),
+                          );
+                        }
                       ),
                       centerTitle: true,
                       leading: const CloseButton(),

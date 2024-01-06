@@ -52,14 +52,18 @@ class NavigationDefine {
 
   toSettingOptionsSelectSheet<T>(
       {required SettingValue<T> settingValue,
-      required List<SettingOptionsSelectSheetItem> items}) {
+      required List<SettingOptionsSelectSheetItem> items,
+      Function(T)? onChangeCallBack,
+      String? title}) {
     _navigator.showBottomSheet(
         Provider(
           create: (_) => SettingOptionsSheetController<T>(
-              settingValue: settingValue, items: items),
+              settingValue: settingValue, 
+              items: items,
+              onChangeCallBack: onChangeCallBack),
           child: SettingOptionsSelectSheet<T>(),
         ),
-        title: 'Theme',
+        title: title,
         initialChildSize: 0.5,
         maxChildSize: 0.5);
   }

@@ -15,8 +15,6 @@ abstract class _OnboardingControllerBase extends BaseController with Store, Auth
   @action
   loginWithGoogle() async {
     isLoading = true;
-    authController.loginWithGoogle()
-    .then((value) => isLoading = false);
   }
 
   @override

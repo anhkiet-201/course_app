@@ -1,0 +1,14 @@
+{
+    "language": "Language",
+    "appearance": "Appearance",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System",
+    "theme": "Theme",
+    "settings": "Settings",
+    "vi_language": "Vietnamese",
+    "eng_language": "English",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register"
+}

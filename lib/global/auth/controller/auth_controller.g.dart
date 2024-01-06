@@ -16,22 +16,6 @@ mixin _$AuthController on _AuthControllerBase, Store {
           name: '_AuthControllerBase.isLogin'))
       .value;
 
-  late final _$loginWithGoogleAsyncAction =
-      AsyncAction('_AuthControllerBase.loginWithGoogle', context: context);
-
-  @override
-  Future loginWithGoogle() {
-    return _$loginWithGoogleAsyncAction.run(() => super.loginWithGoogle());
-  }
-
-  late final _$logoutAsyncAction =
-      AsyncAction('_AuthControllerBase.logout', context: context);
-
-  @override
-  Future logout() {
-    return _$logoutAsyncAction.run(() => super.logout());
-  }
-
   @override
   String toString() {
     return '''

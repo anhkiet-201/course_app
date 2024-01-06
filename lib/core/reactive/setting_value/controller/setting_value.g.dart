@@ -32,18 +32,12 @@ mixin _$SettingValue<T> on _SettingValueBase<T>, Store {
     });
   }
 
-  late final _$_SettingValueBaseActionController =
-      ActionController(name: '_SettingValueBase', context: context);
+  late final _$updateValueAsyncAction =
+      AsyncAction('_SettingValueBase.updateValue', context: context);
 
   @override
-  void updateValue(T? newValue) {
-    final _$actionInfo = _$_SettingValueBaseActionController.startAction(
-        name: '_SettingValueBase.updateValue');
-    try {
-      return super.updateValue(newValue);
-    } finally {
-      _$_SettingValueBaseActionController.endAction(_$actionInfo);
-    }
+  Future<void> updateValue(T? newValue) {
+    return _$updateValueAsyncAction.run(() => super.updateValue(newValue));
   }
 
   @override

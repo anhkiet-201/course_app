@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kt_course/app/navigation/navigator_define.dart';
 import 'package:kt_course/common/color/color.dart';
@@ -43,7 +44,7 @@ class AccountPage extends StatelessWidget
                     height: 15,
                   ),
                   Text(
-                    authController.user.displayName ?? '',
+                    'Anh Kiet',
                     style: context.textTheme.headlineMedium
                         ?.copyWith(color: context.color.onBackground),
                   ),
@@ -58,7 +59,7 @@ class AccountPage extends StatelessWidget
                         width: 5,
                       ),
                       Text(
-                        authController.user.email ?? '',
+                        'igg.anhkiet1@gmail.com',
                         style: context.textTheme.bodyLarge?.copyWith(
                           color: context.color.onBackground,
                         ),
@@ -74,7 +75,7 @@ class AccountPage extends StatelessWidget
 
   AbstractSettingsSection get _optionsList => SettingsSectionCustom(
         tiles: [
-          SettingOptionsButton(title: 'Settings', icon: const Icon(Icons.settings), onPress: nav.toSettings)
+          SettingOptionsButton(title: 'settings', icon: const Icon(Icons.settings), onPress: nav.toSettings)
         ],
       );
   
@@ -82,20 +83,24 @@ class AccountPage extends StatelessWidget
         tiles: [
           CustomSettingsTile(
             child: TextButton(
-              onPressed: authController.logout,
+              onPressed: () {},
               style: TextButton.styleFrom(
                   shape:
                       RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                 child: Center(
-                  child: Text(
-                    'Đăng xuất',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.redAccent
-                    ),
+                  child: Builder(
+                    builder: (context) {
+                      return Text(
+                        'logout'.tr(context: context),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.redAccent
+                        ),
+                      );
+                    }
                   ),
                 ),
               ),

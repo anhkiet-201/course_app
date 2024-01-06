@@ -14,14 +14,14 @@ targets:
       #     #   JSON:
       #     #     type: Map<String, dynamic>
       #     namingSeparator: ""
-      freezed:
-        enabled: true
-        generate_for:
-          include:
-            - lib/network/model/**/*.dart
-        options:
-          copy_with: false
-          equal: false
+      # freezed:
+      #   enabled: true
+      #   generate_for:
+      #     include:
+      #       - lib/network/model/**/*.dart
+      #   options:
+      #     copy_with: false
+      #     equal: false
       mobx_codegen|mobx_generator:
         enabled: true
         generate_for:

@@ -8,9 +8,9 @@ enum ThemeModeSettingOptions implements AbstractSettingOptions {
 
   @override
   String get title => switch(this) {
-    light => 'Light',
-    dark => 'Dark',
-    system => 'System'
+    light => 'light',
+    dark => 'dark',
+    system => 'system'
   };
 
   @override

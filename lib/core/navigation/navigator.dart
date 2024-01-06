@@ -60,7 +60,7 @@ abstract interface class Navigator {
       Color? backgroundColor,
       double initialChildSize,
       bool snap,
-      String title,
+      String? title,
       List<double>? snapSizes});
 }
 

@@ -14,14 +14,18 @@ abstract class _SettingOptionsSheetControllerBase<T> extends BaseController with
 
   final List<SettingOptionsSelectSheetItem> items;
 
+  final Function(T)? onChangeCallBack;
+
   _SettingOptionsSheetControllerBase({
     required this.settingValue,
-    required this.items
+    required this.items,
+    this.onChangeCallBack
   });
 
   @action
-  onChangeValue(SettingOptionsSelectSheetItem item) {
-    settingValue.updateValue(item.value);
+  onChangeValue(SettingOptionsSelectSheetItem item) async {
+    await settingValue.updateValue(item.value);
+    onChangeCallBack?.call(settingValue.value);
   }
 
   @override

@@ -1,0 +1,14 @@
+{
+    "language": "Ngôn ngữ",
+    "appearance": "Hiển thị",
+    "dark": "Tối",
+    "light": "Sáng",
+    "system": "Hệ thống",
+    "theme": "Giao diện",
+    "settings": "Cài đặt",
+    "vi_language": "Tiếng Việt",
+    "eng_language": "Tiếng Anh",
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "register": "Đăng ký"
+}
