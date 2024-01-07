@@ -68,6 +68,7 @@ dependencies:
     git:
       url: https://Anh-Kiet201@bitbucket.org/kt-course/ktcourseapi.git
       ref: master
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
