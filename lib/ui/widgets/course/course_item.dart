@@ -14,44 +14,53 @@ class CourseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      margin: const EdgeInsets.all(5),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: Image.network(
-                'https://images.ctfassets.net/ub3bwfd53mwy/5WFv6lEUb1e6kWeP06CLXr/acd328417f24786af98b1750d90813de/4_Image.jpg?w=750',
-                fit: BoxFit.cover,
+    return TextButton(
+      onPressed: () {},
+      style: TextButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5)
+        ),
+        padding: EdgeInsets.zero,
+      ),
+      child: Container(
+        width: width,
+        margin: const EdgeInsets.all(5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AspectRatio(
+              aspectRatio: 16 / 9,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.network(
+                  'https://images.ctfassets.net/ub3bwfd53mwy/5WFv6lEUb1e6kWeP06CLXr/acd328417f24786af98b1750d90813de/4_Image.jpg?w=750',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          Container(
-            height: 24.0 * titleLine,
-            margin: const EdgeInsets.symmetric(vertical: 5),
-            child: Text(
-              'AWS Certified Solutions Architect - Associate',
-              style: context.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                overflow: TextOverflow.ellipsis,
+            Container(
+              height: 24.0 * titleLine,
+              margin: const EdgeInsets.symmetric(vertical: 5),
+              child: Text(
+                'AWS Certified Solutions Architect - Associate',
+                style: context.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                maxLines: titleLine,
               ),
-              maxLines: titleLine,
             ),
-          ),
-          Text(
-            'Linh nguyen',
-            style: context.textTheme.bodySmall?.copyWith(fontSize: 12),
-          ),
-          const SizedBox(height: 5,),
-          _rating,
-          const SizedBox(height: 5,),
-          _prices
-        ],
+            Text(
+              'Linh nguyen',
+              style: context.textTheme.bodySmall?.copyWith(fontSize: 12),
+            ),
+            const SizedBox(height: 5,),
+            _rating,
+            const SizedBox(height: 5,),
+            _prices,
+          ],
+        ),
       ),
     );
   }
@@ -95,7 +104,7 @@ class CourseItem extends StatelessWidget {
             fontWeight: FontWeight.bold
           ),
         ),
-        const SizedBox(width: 5,),
+        const SizedBox(width: 10,),
         Text(
           150000.pricesFormat,
           style: context.textTheme.titleMedium?.copyWith(
