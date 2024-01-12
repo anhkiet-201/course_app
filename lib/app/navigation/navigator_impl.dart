@@ -17,7 +17,7 @@ class NavigatorImpl implements nav.Navigator {
       {nav.PushType type = nav.PushType.nomal,
       Duration duration = const Duration(milliseconds: 300),
       nav.NavigatorAnimationType animationType =
-          nav.NavigatorAnimationType.normal}) {
+          nav.NavigatorAnimationType.fade}) {
     final pageRoute = PageRouteBuilder<T>(
 
         /// [opaque] set false, then the detail page can see the home page screen.

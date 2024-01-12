@@ -10,10 +10,12 @@ enum NavigatorAnimationType {
   fade,
   slide,
   scale,
-  normal;
+  normal,
+  rotate;
 
   Widget builder(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation, Widget child) {
+        
     switch (this) {
       case fade:
         return FadeTransition(
@@ -38,6 +40,11 @@ enum NavigatorAnimationType {
             opacity: animation,
             child: child,
           ),
+        );
+      case rotate:
+        return RotationTransition(
+          turns: animation.drive(Tween<double>(begin: 0, end: 90)),
+          child: child,
         );
     }
   }

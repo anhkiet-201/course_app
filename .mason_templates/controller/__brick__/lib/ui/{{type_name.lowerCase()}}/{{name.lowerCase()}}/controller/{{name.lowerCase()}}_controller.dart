@@ -9,5 +9,5 @@ class {{name.pascalCase()}}Controller = _{{name.pascalCase()}}ControllerBase wit
 abstract class _{{name.pascalCase()}}ControllerBase extends BaseController with Store {
 
   @override
-  FutureOr onDispose() { }/home/user/course_app/lib/network
+  FutureOr onDispose() { }
 }

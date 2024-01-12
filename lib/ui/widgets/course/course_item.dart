@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:kt_course/app/navigation/navigator_define.dart';
 import 'package:kt_course/common/color/color.dart';
 import 'package:kt_course/common/extensions/context_extensions.dart';
 import 'package:kt_course/common/extensions/number_extensions.dart';
@@ -15,7 +16,7 @@ class CourseItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () => nav.toCourseDetails(),
       style: TextButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5)
