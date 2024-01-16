@@ -1,20 +1,24 @@
 import 'dart:async';
 
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:kt_course/core/di/Injector.dart';
-import 'package:kt_course/core/navigation/navigator.dart';
+import 'package:kt_course/core/navigation/navigator.dart' as nav;
 import 'package:kt_course/ui/widgets/custom_video_player/custom_video_player_full_screen.dart';
 import 'package:mobx/mobx.dart';
 import 'package:kt_course/core/base/controller/base_controller.dart';
 import 'package:video_player/video_player.dart';
 part 'custom_video_player_controller.g.dart';
 
-class CustomVideoPlayerController = _CustomVideoPlayerControllerBase with _$CustomVideoPlayerController;
+class CustomVideoPlayerController = _CustomVideoPlayerControllerBase
+    with _$CustomVideoPlayerController;
 
-abstract class _CustomVideoPlayerControllerBase extends BaseController with Store {
-
+abstract class _CustomVideoPlayerControllerBase extends BaseController
+    with Store {
   // The primary controller for playing videos.
   late final VideoPlayerController videoController;
+
+  final Widget Function(CustomVideoPlayerController)? videoControl;
 
   // State variables for video playback, progress, and control visibility.
   @readonly
@@ -25,17 +29,19 @@ abstract class _CustomVideoPlayerControllerBase extends BaseController with Stor
   Duration _currentSeek = const Duration(); // Stores current playback position.
   @readonly
   Duration _maxSeek = const Duration(); // Stores total video duration.
-  bool get id => videoController.value.isInitialized; // Getter for initialization status.
+  bool get id =>
+      videoController.value.isInitialized; // Getter for initialization status.
   @readonly
   bool _isPlaying = false; // Tracks whether video is playing.
   @readonly
   bool _isFullscreenMode = false; // Indicates fullscreen mode.
   @readonly
-  bool _shouldShowControlView = true; // Determines if video controls should be visible.
+  bool _shouldShowControlView =
+      true; // Determines if video controls should be visible.
   Timer? _coutToHideControl; // Timer to automatically hide controls.
 
   // Constructor initializes the controller with video URL, autoplay, and looping options.
-  _CustomVideoPlayerControllerBase(String url, bool autoPlay, bool looping) {
+  _CustomVideoPlayerControllerBase(String url, bool autoPlay, bool looping, this.videoControl) {
     videoController = VideoPlayerController.networkUrl(Uri.parse(url));
     _initialize(autoPlay, looping);
   }
@@ -49,7 +55,8 @@ abstract class _CustomVideoPlayerControllerBase extends BaseController with Stor
     if (autoPlay) {
       setPalying(true); // Start playback if autoplay is enabled.
     } else {
-      _shouldShowControlView = true; // Show controls initially if not autoplaying.
+      _shouldShowControlView =
+          true; // Show controls initially if not autoplaying.
     }
 
     videoController.setLooping(looping); // Set looping behavior.
@@ -65,9 +72,11 @@ abstract class _CustomVideoPlayerControllerBase extends BaseController with Stor
       _isLoading = videoController.value.isBuffering; // Update loading state.
       _isPlaying = videoController.value.isPlaying; // Update playing state.
       videoController.position.then((value) {
-        final currentDuration = value ?? const Duration(); // Get current position safely.
+        final currentDuration =
+            value ?? const Duration(); // Get current position safely.
         _currentSeek = currentDuration; // Update current seek value.
-        _videoProgress = currentDuration.inMilliseconds.ceilToDouble() / videoDuration.inMilliseconds; // Calculate progress.
+        _videoProgress = currentDuration.inMilliseconds.ceilToDouble() /
+            videoDuration.inMilliseconds; // Calculate progress.
       });
     });
   }
@@ -96,7 +105,8 @@ abstract class _CustomVideoPlayerControllerBase extends BaseController with Stor
   @action
   void onEndSeek(double value) {
     // Calculates the new video position based on the final seek value.
-    final newVideoPosition = Duration(milliseconds: (_maxSeek.inMilliseconds * value).toInt());
+    final newVideoPosition =
+        Duration(milliseconds: (_maxSeek.inMilliseconds * value).toInt());
 
     // Seeks the video to the desired position.
     videoController.seekTo(newVideoPosition).then((value) {
@@ -132,14 +142,17 @@ abstract class _CustomVideoPlayerControllerBase extends BaseController with Stor
     _isFullscreenMode = true;
 
     // Hides system UI elements for a more immersive experience.
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky, overlays: []);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
+        overlays: []);
 
     // Forces landscape orientation for fullscreen mode.
     SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
 
     // Pushes a new fullscreen video player screen onto the navigation stack.
-    final nav = injector.get<Navigator>();
-    await nav.push(CustomVideoPlayerFullScreen(controller))?.then((value) {
+    final navigation = injector.get<nav.Navigator>();
+    await navigation
+        .push(CustomVideoPlayerFullScreen(controller))
+        ?.then((value) {
       // Restores system UI and orientation when exiting fullscreen.
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -156,7 +169,7 @@ abstract class _CustomVideoPlayerControllerBase extends BaseController with Stor
   @action
   void exitFullscreenMode() {
     // Pops the fullscreen view from the navigation stack.
-    injector.get<Navigator>().pop();
+    injector.get<nav.Navigator>().pop();
 
     // Shows the controls after exiting fullscreen.
     showCtrol();

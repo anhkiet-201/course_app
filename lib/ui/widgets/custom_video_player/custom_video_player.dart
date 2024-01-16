@@ -6,18 +6,19 @@ import 'package:kt_course/ui/widgets/custom_video_player/custom_video_player_con
 import 'package:video_player/video_player.dart';
 
 class CustomVideoPlayer extends StatefulWidget {
-  const CustomVideoPlayer.network({
-    super.key,
-    this.aspectRatio = 16 / 9,
-    required this.url,
-    this.autoPlay = false,
-    this.looping = false,
-  });
+  const CustomVideoPlayer.network(
+      {super.key,
+      this.aspectRatio = 16 / 9,
+      required this.url,
+      this.autoPlay = false,
+      this.looping = false,
+      this.videoControl});
 
   final String url;
   final bool autoPlay;
   final bool looping;
   final double aspectRatio;
+  final Widget Function(CustomVideoPlayerController)? videoControl;
 
   @override
   State<CustomVideoPlayer> createState() => _CustomVideoPlayerState();
@@ -25,34 +26,30 @@ class CustomVideoPlayer extends StatefulWidget {
 
 class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
   late final CustomVideoPlayerController _controller =
-      CustomVideoPlayerController(widget.url, widget.autoPlay, widget.looping);
+      CustomVideoPlayerController(
+          widget.url,
+          widget.autoPlay,
+          widget.looping,
+          widget.videoControl ??
+              (controller) => CustomVideoPlayerControl(controller));
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-          if(_controller.shouldShowControlView) {
-            _controller.hideCtrol();
-          } else {
-            _controller.showCtrol();
-          }
-      },
-      child: Observer(builder: (context) {
-        return AspectRatio(
-          aspectRatio: widget.aspectRatio,
-          child: Stack(
-            children: [
-              VideoPlayer(_controller.videoController),
-              CustomVideoPlayerControl(_controller)
-            ],
-          ),
-        ).heroTag('video', transactionBuilder: ((animation, child) {
-          return RotationTransition(
-              turns: animation.drive(Tween<double>(begin: 0.0, end: 0.45)),
-              child: child);
-        }));
-      }),
-    );
+    return Observer(builder: (context) {
+      return AspectRatio(
+        aspectRatio: widget.aspectRatio,
+        child: Stack(
+          children: [
+            VideoPlayer(_controller.videoController),
+            if (_controller.videoControl != null) _controller.videoControl!(_controller)
+          ],
+        ),
+      ).heroTag('video', transactionBuilder: ((animation, child) {
+        return RotationTransition(
+            turns: animation.drive(Tween<double>(begin: 0.0, end: 0.45)),
+            child: child);
+      }));
+    });
   }
 
   @override
