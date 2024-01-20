@@ -45,7 +45,7 @@ class CustomVideoPlayerControl extends StatelessWidget {
                         else
                           IconButton(
                               onPressed: () =>
-                                  _controller.setPalying(!_controller.isPlaying),
+                                  _controller.setPlaying(!_controller.isPlaying),
                               icon: Icon(
                                 _controller.isPlaying
                                     ? Icons.pause_circle_filled_rounded

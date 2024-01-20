@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:kt_course/common/extensions/hero_animation_extensions.dart';
 import 'package:kt_course/ui/widgets/custom_video_player/controller/custom_video_player_controller.dart';
-import 'package:kt_course/ui/widgets/custom_video_player/custom_video_player_control_view.dart';
 import 'package:video_player/video_player.dart';
 
 class CustomVideoPlayer extends StatefulWidget {
@@ -12,12 +12,14 @@ class CustomVideoPlayer extends StatefulWidget {
       required this.url,
       this.autoPlay = false,
       this.looping = false,
-      this.videoControl});
+      this.videoControl,
+      this.secure = false});
 
   final String url;
   final bool autoPlay;
   final bool looping;
   final double aspectRatio;
+  final bool secure;
   final Widget Function(CustomVideoPlayerController)? videoControl;
 
   @override
@@ -30,8 +32,15 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
           widget.url,
           widget.autoPlay,
           widget.looping,
-          widget.videoControl ??
-              (controller) => CustomVideoPlayerControl(controller));
+          widget.videoControl);
+
+  @override
+  void initState() {
+    super.initState();
+    if(widget.secure) {
+      FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,5 +65,8 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
   void dispose() {
     super.dispose();
     _controller.onDispose();
+    if(widget.secure) {
+      FlutterWindowManager.clearFlags(FlutterWindowManager.FLAG_SECURE);
+    }
   }
 }

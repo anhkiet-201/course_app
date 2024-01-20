@@ -53,7 +53,7 @@ abstract class _CustomVideoPlayerControllerBase extends BaseController
     _isLoading = false; // Mark loading as complete.
 
     if (autoPlay) {
-      setPalying(true); // Start playback if autoplay is enabled.
+      setPlaying(true); // Start playback if autoplay is enabled.
     } else {
       _shouldShowControlView =
           true; // Show controls initially if not autoplaying.
@@ -111,18 +111,18 @@ abstract class _CustomVideoPlayerControllerBase extends BaseController
     // Seeks the video to the desired position.
     videoController.seekTo(newVideoPosition).then((value) {
       // Resumes playback after seeking completes.
-      setPalying(true);
+      setPlaying(true);
     });
   }
 
   // Sets the playback state (play or pause) and manages control visibility:
-  void setPalying(bool value) {
+  void setPlaying(bool value) {
     if (value) {
-      // Shows the controls for play state.
-      showCtrol();
-
       // Starts video playback.
       videoController.play();
+      
+      // Shows the controls for play state.
+      showCtrol();
     } else {
       // Pauses the video.
       videoController.pause();
