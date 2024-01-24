@@ -16,6 +16,33 @@ mixin _$AuthController on _AuthControllerBase, Store {
           name: '_AuthControllerBase.isLogin'))
       .value;
 
+  late final _$loginWithGoogleAsyncAction =
+      AsyncAction('_AuthControllerBase.loginWithGoogle', context: context);
+
+  @override
+  Future<void> loginWithGoogle() {
+    return _$loginWithGoogleAsyncAction.run(() => super.loginWithGoogle());
+  }
+
+  late final _$loginWithEmailAndPasswordAsyncAction = AsyncAction(
+      '_AuthControllerBase.loginWithEmailAndPassword',
+      context: context);
+
+  @override
+  Future loginWithEmailAndPassword(
+      {required String email, required String password}) {
+    return _$loginWithEmailAndPasswordAsyncAction.run(() =>
+        super.loginWithEmailAndPassword(email: email, password: password));
+  }
+
+  late final _$_handleLoginAsyncAction =
+      AsyncAction('_AuthControllerBase._handleLogin', context: context);
+
+  @override
+  Future<void> _handleLogin() {
+    return _$_handleLoginAsyncAction.run(() => super._handleLogin());
+  }
+
   @override
   String toString() {
     return '''

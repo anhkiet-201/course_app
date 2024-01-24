@@ -8,7 +8,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:151128183564:android:a58f294d601674454d2f29",
+        "mobilesdk_app_id": "1:151128183564:android:45fcdad2bf7ded074d2f29",
         "android_client_info": {
           "package_name": "com.kt.anhkiet.kt_course"
         }
@@ -20,14 +20,6 @@
           "android_info": {
             "package_name": "com.kt.anhkiet.kt_course",
             "certificate_hash": "43679c7351db01fa085a4d01ed9616b987e110b1"
-          }
-        },
-        {
-          "client_id": "151128183564-tlsbiqi9bvnbi3504a88l8t5nuq8r21d.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.kt.anhkiet.kt_course",
-            "certificate_hash": "aa8d883ccdf5808bf6c5ab04194eac81829470cd"
           }
         },
         {

@@ -9,12 +9,22 @@ class OnboardingController = _OnboardingControllerBase with _$OnboardingControll
 
 abstract class _OnboardingControllerBase extends BaseController with Store, AuthControllerProvider {
 
-  @observable
-  bool isLoading = false;
+  @readonly
+  bool _isLoading = false;
+
+  @readonly
+  bool _isLoginEamilAndPassword = false;
+
+  @readonly
+  bool _isLoginWithGoogle = false;
 
   @action
   loginWithGoogle() async {
-    isLoading = true;
+    _isLoading = true;
+    _isLoginWithGoogle = true;
+    await authController.loginWithGoogle();
+    _isLoading = false;
+    _isLoginWithGoogle = false;
   }
 
   @override

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:kt_course/common/color/color.dart';
 import 'package:kt_course/common/extensions/context_extensions.dart';
 import 'package:kt_course/core/navigation/navigator.dart' as nav;
+import 'package:kt_course_apis/core/base/api_error.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class NavigatorImpl implements nav.Navigator {
@@ -41,7 +42,11 @@ class NavigatorImpl implements nav.Navigator {
   void showSnackBar({String? message, error}) {
     final overlay = nav.Navigator.navigationKey.currentState?.overlay;
     if (overlay == null) return;
-    final parseMessage = error != null ? 'Something is wrong!' : message;
+    final parseMessage = error != null
+        ? error is APIError
+            ? error.messages.join('\n')
+            : 'Something is wrong!'
+        : message;
     showTopSnackBar(
       overlay,
       Material(
@@ -93,8 +98,8 @@ class NavigatorImpl implements nav.Navigator {
 
   @override
   Future<T?>? showBottomSheet<T>(Widget page,
-      {double maxChildSize = 0.9, 
-      bool showDragHandle = true, 
+      {double maxChildSize = 0.9,
+      bool showDragHandle = true,
       Color? backgroundColor,
       double initialChildSize = 0.9,
       bool snap = true,
@@ -128,24 +133,21 @@ class NavigatorImpl implements nav.Navigator {
                   return Scaffold(
                     backgroundColor: Colors.transparent,
                     appBar: AppBar(
-                      title: Builder(
-                        builder: (titleContext) {
-                          return Text(
-                            title?.tr(context: titleContext) ?? '',
-                            style: context.textTheme.titleLarge?.copyWith(
-                              fontWeight: FontWeight.bold
-                            ),
-                          );
-                        }
-                      ),
+                      title: Builder(builder: (titleContext) {
+                        return Text(
+                          title?.tr(context: titleContext) ?? '',
+                          style: context.textTheme.titleLarge
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        );
+                      }),
                       centerTitle: true,
                       leading: const CloseButton(),
-                      ),
+                    ),
                     body: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    controller: scrollController,
-                    child: page,
-                  ),
+                      physics: const BouncingScrollPhysics(),
+                      controller: scrollController,
+                      child: page,
+                    ),
                   );
                 },
               ),
