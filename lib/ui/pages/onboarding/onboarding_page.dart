@@ -14,21 +14,20 @@ class OnboardingPage extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: Center(
-                child: Image.asset('assets/images/splash_logo.png')
-                    .heroTag('splash_logo'),
-              ),
+      resizeToAvoidBottomInset: false,
+      body: Column(
+        children: [
+          Expanded(
+            child: Center(
+              child: Image.asset('assets/images/splash_logo.png')
+                  .heroTag('splash_logo'),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-              child: _actionButton,
-            )
-          ],
-        ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+            child: _actionButton,
+          )
+        ],
       ),
     );
   }
@@ -43,7 +42,9 @@ class OnboardingPage extends StatelessWidget
 
   Widget get _emailAndPasswordLoginButton => Observer(builder: (context) {
     final ctrl = controller(context);
-    return IconButton.filledTonal(onPressed: () {}, 
+    return IconButton.filledTonal(onPressed: () {
+      ctrl.showLoginSheet();
+    },
     icon: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

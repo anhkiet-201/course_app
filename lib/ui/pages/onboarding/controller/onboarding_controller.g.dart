@@ -74,6 +74,14 @@ mixin _$OnboardingController on _OnboardingControllerBase, Store {
     return _$loginWithGoogleAsyncAction.run(() => super.loginWithGoogle());
   }
 
+  late final _$showLoginSheetAsyncAction =
+      AsyncAction('_OnboardingControllerBase.showLoginSheet', context: context);
+
+  @override
+  Future showLoginSheet() {
+    return _$showLoginSheetAsyncAction.run(() => super.showLoginSheet());
+  }
+
   @override
   String toString() {
     return '''

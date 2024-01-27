@@ -1,3 +1,4 @@
+import 'package:kt_course/core/services/model/user/user.dart';
 import 'package:kt_course/core/services/services_provider.dart';
 import 'package:kt_course/global/auth/repository/auth_repository.dart';
 import 'package:kt_course_apis/core/service/model/request/login.dart';
@@ -29,8 +30,11 @@ class AuthRepositoryImpl with ApiServiceProvider implements AuthRepository {
   }
 
   @override
-  bool get isLogin => false;
-
-  @override
-  String get user => 'Anh Kiet';
+  Future<User> getProfile() async {
+    final data = await apiService.getProfile();
+    return User(
+      email: data.email,
+      name: data.name
+    );
+  }
 }

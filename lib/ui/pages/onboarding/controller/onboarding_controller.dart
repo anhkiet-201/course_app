@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:kt_course/app/navigation/navigator_define.dart';
+import 'package:kt_course/core/logger/logger.dart';
 import 'package:kt_course/global/auth/auth_controller_provider.dart';
 import 'package:mobx/mobx.dart';
 import 'package:kt_course/core/base/controller/base_controller.dart';
@@ -23,8 +25,16 @@ abstract class _OnboardingControllerBase extends BaseController with Store, Auth
     _isLoading = true;
     _isLoginWithGoogle = true;
     await authController.loginWithGoogle();
+    if(authController.isLogin) {
+      nav.toHome();
+    }
     _isLoading = false;
     _isLoginWithGoogle = false;
+  }
+
+  @action
+  showLoginSheet() async {
+    nav.showLoginSheet();
   }
 
   @override

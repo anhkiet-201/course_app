@@ -12,6 +12,7 @@ import 'package:kt_course/core/navigation/navigator.dart';
 import 'package:kt_course/app/navigation/navigator_impl.dart';
 import 'package:kt_course/core/reactive/setting_value/repository/setting_value_repository.dart';
 import 'package:kt_course/core/reactive/setting_value/repository/setting_value_repository_impl.dart';
+import 'package:kt_course/core/services/model/user/user.dart';
 import 'package:kt_course/global/app/controller/app_controller.dart';
 import 'package:kt_course/global/app/repository/app_repository.dart';
 import 'package:kt_course/global/app/repository/app_repository_impl.dart';
@@ -80,6 +81,9 @@ class Injector {
     // Initialize hive storage, an implementation of LocalStogare
     await Hive.initFlutter();
 
+    // Register adapter
+    Hive.registerAdapter(UserAdapter());
+    
     // Open boxes
     await Hive.openBox(LocalStorage.defaultBox);
     await Hive.openBox(LocalStorage.settingsBox);

@@ -541,6 +541,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  hive_generator:
+    dependency: "direct dev"
+    description:
+      name: hive_generator
+      sha256: "06cb8f58ace74de61f63500564931f9505368f45f98958bd7a6c35ba24159db4"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
   html:
     dependency: transitive
     description:
@@ -617,8 +625,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "3e300fa"
-      resolved-ref: "3e300fa39bba5eb245c46a98402a5d1757b324fc"
+      ref: "32d2bf2"
+      resolved-ref: "32d2bf218dbd487e4682fd8b4a01e46752202d1e"
       url: "https://Anh-Kiet201@bitbucket.org/kt-course/ktcourseapi.git"
     source: git
     version: "0.0.1"
@@ -862,22 +870,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.3"
-  rive:
-    dependency: "direct main"
-    description:
-      name: rive
-      sha256: ae75a6e9cfbf146630bfb1feba97ee582d935508be6b362e4bd197b9c55a6dd3
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.12.4"
-  rive_common:
-    dependency: transitive
-    description:
-      name: rive_common
-      sha256: f4e20d0a99c5040c85624a3eb2b0b6b19e614d93a693c3bb25cf6e7bb2d3d6d3
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.8"
   settings_ui:
     dependency: "direct main"
     description:

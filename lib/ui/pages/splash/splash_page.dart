@@ -9,7 +9,9 @@ class SplashPage extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    controller(context).initialize();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      controller(context).initialize();
+    },);
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,

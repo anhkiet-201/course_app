@@ -83,7 +83,7 @@ class AccountPage extends StatelessWidget
         tiles: [
           CustomSettingsTile(
             child: TextButton(
-              onPressed: () {},
+              onPressed: () => authController.logout(),
               style: TextButton.styleFrom(
                   shape:
                       RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),

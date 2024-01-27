@@ -1,4 +1,5 @@
 import 'package:kt_course/core/base/repository/base_repository.dart';
+import 'package:kt_course/core/services/model/user/user.dart';
 
 abstract class LoginMethodProvider {}
 
@@ -19,7 +20,5 @@ abstract interface class AuthRepository extends BaseRepository {
 
   Future<bool> logout({bool allDevices});
 
-  bool get isLogin;
-
-  String get user;
+  Future<User> getProfile();
 }
