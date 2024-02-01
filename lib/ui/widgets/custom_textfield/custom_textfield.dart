@@ -10,7 +10,8 @@ class CustomTextField extends StatelessWidget {
       this.controller,
       this.obscureText = false,
       this.suffixIcon,
-      this.prefixIcon});
+      this.prefixIcon,
+      this.onChanged});
 
   final String? hintText;
   final int? maxLines;
@@ -19,6 +20,7 @@ class CustomTextField extends StatelessWidget {
   final bool obscureText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
           maxLines: maxLines,
           controller: controller,
+          onChanged: onChanged,
           style: style ?? TextStyle(color: context.color.onPrimaryContainer),
           obscureText: obscureText,
           decoration: InputDecoration(

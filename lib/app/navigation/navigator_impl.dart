@@ -5,6 +5,7 @@ import 'package:kt_course/common/color/color.dart';
 import 'package:kt_course/common/extensions/context_extensions.dart';
 import 'package:kt_course/core/navigation/navigator.dart' as nav;
 import 'package:kt_course_apis/core/base/api_error.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class NavigatorImpl implements nav.Navigator {
@@ -19,15 +20,18 @@ class NavigatorImpl implements nav.Navigator {
       Duration duration = const Duration(milliseconds: 300),
       nav.NavigatorAnimationType animationType =
           nav.NavigatorAnimationType.fade}) {
-    final pageRoute = PageRouteBuilder<T>(
+           final pageRoute = MaterialWithModalsPageRoute<T>(builder: (_) {
+              return page;
+            });
+    // final pageRoute = PageRouteBuilder<T>(
 
-        /// [opaque] set false, then the detail page can see the home page screen.
-        opaque: false,
-        transitionDuration: duration,
-        reverseTransitionDuration: duration,
-        fullscreenDialog: true,
-        pageBuilder: (context, _, __) => page,
-        transitionsBuilder: animationType.builder);
+    //     /// [opaque] set false, then the detail page can see the home page screen.
+    //     opaque: false,
+    //     transitionDuration: duration,
+    //     reverseTransitionDuration: duration,
+    //     fullscreenDialog: true,
+    //     pageBuilder: (context, _, __) => page,
+    //     transitionsBuilder: animationType.builder);
     return switch (type) {
       nav.PushType.nomal =>
         nav.Navigator.navigationKey.currentState?.push(pageRoute),
@@ -101,55 +105,43 @@ class NavigatorImpl implements nav.Navigator {
       {double maxChildSize = 0.9,
       bool showDragHandle = true,
       Color? backgroundColor,
-      double initialChildSize = 0.9,
+      double initialChildSize = 0.5,
       bool snap = true,
       String? title,
       List<double>? snapSizes}) {
     final context = nav.Navigator.globalContext;
     if (context == null) return null;
-    return showModalBottomSheet(
+    return showCupertinoModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,
         elevation: 0,
-        isScrollControlled: true,
-        useRootNavigator: true,
-        useSafeArea: true,
+        duration: const Duration(milliseconds: 300),
+        // isScrollControlled: true,
+        // useRootNavigator: true,
+        // useSafeArea: true,
         isDismissible: true,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(25))),
+        expand: true,
+        // shape: const RoundedRectangleBorder(
+        //     borderRadius: BorderRadius.vertical(top: Radius.circular(15))),
         builder: (ctx) {
           return ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(25)),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
             child: Container(
               color: backgroundColor ?? context.color.background,
-              child: DraggableScrollableSheet(
-                expand: false,
-                snap: snap,
-                snapSizes: snapSizes,
-                maxChildSize: maxChildSize,
-                minChildSize: 0.25,
-                initialChildSize: initialChildSize,
-                builder: (_, ScrollController scrollController) {
-                  return Scaffold(
-                    backgroundColor: Colors.transparent,
-                    appBar: AppBar(
-                      title: Builder(builder: (titleContext) {
-                        return Text(
-                          title?.tr(context: titleContext) ?? '',
-                          style: context.textTheme.titleLarge
-                              ?.copyWith(fontWeight: FontWeight.bold),
-                        );
-                      }),
-                      centerTitle: true,
-                      leading: const CloseButton(),
-                    ),
-                    body: SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
-                      controller: scrollController,
-                      child: page,
-                    ),
-                  );
-                },
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: AppBar(
+                  title: Builder(builder: (titleContext) {
+                    return Text(
+                      title?.tr(context: titleContext) ?? '',
+                      style: context.textTheme.titleLarge
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                    );
+                  }),
+                  centerTitle: true,
+                  leading: const CloseButton(),
+                ),
+                body: page,
               ),
             ),
           );

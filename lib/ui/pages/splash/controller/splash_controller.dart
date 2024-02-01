@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/widgets.dart';
 import 'package:kt_course/app/navigation/navigator_define.dart';
 import 'package:kt_course/global/auth/auth_controller_provider.dart';
 import 'package:mobx/mobx.dart';

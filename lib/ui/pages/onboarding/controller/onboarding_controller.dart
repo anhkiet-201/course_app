@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:kt_course/app/navigation/navigator_define.dart';
-import 'package:kt_course/core/logger/logger.dart';
 import 'package:kt_course/global/auth/auth_controller_provider.dart';
 import 'package:mobx/mobx.dart';
 import 'package:kt_course/core/base/controller/base_controller.dart';
@@ -34,7 +33,14 @@ abstract class _OnboardingControllerBase extends BaseController with Store, Auth
 
   @action
   showLoginSheet() async {
-    nav.showLoginSheet();
+    final result = await nav.showLoginSheet();
+    if (result != null) {
+      _isLoading = true;
+      _isLoginEamilAndPassword = true;
+      await authController.loginWithEmailAndPassword(email: result.$1, password: result.$2);
+      _isLoading = false;
+      _isLoginEamilAndPassword = false;
+    }
   }
 
   @override

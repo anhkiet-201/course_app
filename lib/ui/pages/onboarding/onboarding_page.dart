@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kt_course/common/color/color.dart';
@@ -13,9 +14,9 @@ class OnboardingPage extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Column(
+    return CupertinoPageScaffold(
+      // resizeToAvoidBottomInset: false,
+      child: Column(
         children: [
           Expanded(
             child: Center(
@@ -33,29 +34,41 @@ class OnboardingPage extends StatelessWidget
   }
 
   Widget get _actionButton => Column(
-    children: [
-      _googleLoginButton,
-      const SizedBox(height: 10,),
-      _emailAndPasswordLoginButton
-    ],
-  );
+        children: [
+          _googleLoginButton,
+          const SizedBox(
+            height: 10,
+          ),
+          _emailAndPasswordLoginButton
+        ],
+      );
 
-  Widget get _emailAndPasswordLoginButton => Observer(builder: (context) {
-    final ctrl = controller(context);
-    return IconButton.filledTonal(onPressed: () {
-      ctrl.showLoginSheet();
-    },
-    icon: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset(
-          'assets/icons/login.png',
-          width: 32,
-          height: 32,
-          )
-      ],
-    ));
-  });
+  Widget get _emailAndPasswordLoginButton => Builder(builder: (context) {
+        final ctrl = controller(context);
+        return IconButton.filledTonal(
+            onPressed: () {
+              ctrl.showLoginSheet();
+            },
+            icon: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/icons/login.png',
+                  width: 32,
+                  height: 32,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  'Continue with Email and password',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: context.color.onBackground),
+                )
+              ],
+            ));
+      });
 
   Widget get _googleLoginButton => Observer(builder: (context) {
         final ctrl = controller(context);
@@ -75,24 +88,23 @@ class OnboardingPage extends StatelessWidget
                         width: 10,
                       ),
                       Text(
-                        'Tiếp tục với google',
+                        'Continue with google',
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: context.color.onBackground
-                        ),
+                            fontWeight: FontWeight.bold,
+                            color: context.color.onBackground),
                       )
                     ],
                   ));
       });
 
-  Widget get _loadingIndicator => SizedBox(
-                    width: double.infinity,
-                    height: 32,
-                    child: Center(
-                      child: SizedBox.square(
-                        dimension: 32,
-                        child: CircularProgressIndicator(),
-                      ),
-                    ),
-                  );
+  Widget get _loadingIndicator => const SizedBox(
+        width: double.infinity,
+        height: 32,
+        child: Center(
+          child: SizedBox.square(
+            dimension: 32,
+            child: CircularProgressIndicator(),
+          ),
+        ),
+      );
 }

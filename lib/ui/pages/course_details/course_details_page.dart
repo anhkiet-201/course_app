@@ -10,7 +10,6 @@ class CourseDetailsPage extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    final ctrl = controller(context);
     return Scaffold(
       appBar: CustomAppBar(titleText: ''),
       body: SingleChildScrollView(
