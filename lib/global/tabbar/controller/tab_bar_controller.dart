@@ -21,7 +21,7 @@ abstract class _TabBarControllerBase extends BaseController with Store {
   @observable
   TabBarPredefine currentTab = TabBarPredefine.discover;
 
-  final PageController pageController = PageController(initialPage: 0);
+  late final PageController pageController = PageController(initialPage: currentTab.intValue);
 
   final listTab = [
     TabBarPredefine.discover,

@@ -16,6 +16,7 @@ abstract class LocalStorage {
   static const String defaultBox = 'default';
   static const String settingsBox = 'settings';
   static const String secureBox = 'secure';
+  static const String tokenBox = 'token';
 
   /// The version of the local storage.
   int get version;

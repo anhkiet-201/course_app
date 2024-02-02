@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:kt_course/common/app_config.dart';
 import 'package:kt_course/common/firebase_options.dart';
 import 'package:kt_course/core/data/local/hive_storage/local_storage.dart';
 import 'package:kt_course/core/data/local/impl/local_starage_impl.dart';
@@ -11,6 +12,7 @@ import 'package:kt_course/core/navigation/navigator.dart';
 import 'package:kt_course/app/navigation/navigator_impl.dart';
 import 'package:kt_course/core/reactive/setting_value/repository/setting_value_repository.dart';
 import 'package:kt_course/core/reactive/setting_value/repository/setting_value_repository_impl.dart';
+import 'package:kt_course/core/services/model/user/user.dart';
 import 'package:kt_course/global/app/controller/app_controller.dart';
 import 'package:kt_course/global/app/repository/app_repository.dart';
 import 'package:kt_course/global/app/repository/app_repository_impl.dart';
@@ -37,7 +39,7 @@ class Injector {
     _injectNavigator();
     _injectGlobalController();
     await _injectLocalStorage();
-    _injectServices();
+    await _injectServices();
   }
 
   _initializeEnv() async {
@@ -46,21 +48,22 @@ class Injector {
 
   _initializeFirebase() async {
     await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform
-    );
+        options: DefaultFirebaseOptions.currentPlatform);
   }
 
-  _injectServices() {
-    _getIt.registerLazySingleton<KTCourseApiServices>(() => BaseKTCourseApiService(
-      config: Config(baseUrl: dotenv.get(''), hiveBox: Hive.box(''))
-    ));
+  _injectServices() async {
+    _getIt.registerLazySingleton<KTCourseApiServices>(() =>
+        BaseKTCourseApiService(
+            config: Config(baseUrl: AppConfig.apiHost, hiveBox: Hive.box(LocalStorage.tokenBox))));
   }
 
   _injectRepository() {
     _getIt.registerLazySingleton<AuthRepository>(AuthRepositoryImpl.new);
     _getIt.registerLazySingleton<AppRepository>(AppRepositoryImpl.new);
-    _getIt.registerLazySingleton<SettingValueRepository>(SettingValueRepositoryImpl.new);
-    _getIt.registerLazySingleton<SettingsRepository>(SettingsRepositoryImpl.new);
+    _getIt.registerLazySingleton<SettingValueRepository>(
+        SettingValueRepositoryImpl.new);
+    _getIt
+        .registerLazySingleton<SettingsRepository>(SettingsRepositoryImpl.new);
   }
 
   _injectNavigator() {
@@ -78,12 +81,18 @@ class Injector {
     // Initialize hive storage, an implementation of LocalStogare
     await Hive.initFlutter();
 
+    // Register adapter
+    Hive.registerAdapter(UserAdapter());
+    
     // Open boxes
     await Hive.openBox(LocalStorage.defaultBox);
     await Hive.openBox(LocalStorage.settingsBox);
     // Todo: implement secure encryption by storing a random to keychain/keystore
     String encryptedKey = 'Wr1fM3XHtIefLX8JKGJfPNiHdaWiNZspbml6NJeJkTk=';
     await Hive.openBox(LocalStorage.secureBox,
+        encryptionCipher: HiveAesCipher(base64Decode(encryptedKey)));
+
+    await Hive.openBox<String>(LocalStorage.tokenBox,
         encryptionCipher: HiveAesCipher(base64Decode(encryptedKey)));
 
     // Inject an implementation of LocalStogare

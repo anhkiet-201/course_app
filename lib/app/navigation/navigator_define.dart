@@ -10,6 +10,8 @@ import 'package:kt_course/ui/pages/onboarding/onboarding_page.dart';
 import 'package:kt_course/ui/pages/settings/settings_page.dart';
 import 'package:kt_course/ui/widgets/custom_video_player/controller/custom_video_player_controller.dart';
 import 'package:kt_course/ui/widgets/custom_video_player/custom_video_player_full_screen.dart';
+import 'package:kt_course/ui/widgets/login/controller/login_sheet_controller.dart';
+import 'package:kt_course/ui/widgets/login/login_sheet.dart';
 import 'package:kt_course/ui/widgets/settings/bottom_sheet/controller/setting_options_sheet_controller.dart';
 import 'package:kt_course/ui/widgets/settings/bottom_sheet/setting_options_sheet.dart';
 import 'package:kt_course/ui/widgets/settings/bottom_sheet/settings_options_sheet_item.dart';
@@ -86,6 +88,18 @@ class NavigationDefine {
   enterVideoPlayerFullScreenMode(CustomVideoPlayerController controller) {
     _navigator.push(
       CustomVideoPlayerFullScreen(controller)
+    );
+  }
+
+  Future<(String, String)?> showLoginSheet() async {
+    return await _navigator.showBottomSheet<(String, String)>(
+      Provider(
+        create: (_) => LoginSheetController(),
+        child: const LoginSheet(),
+        dispose: (_, controller) {
+          controller.onDispose();
+        },
+      ),
     );
   }
 }

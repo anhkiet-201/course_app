@@ -9,4 +9,6 @@ class AppConfig {
   static final firebaseProjectId = dotenv.get('FIREBASE_PROJECT_ID');
   static final firebaseStorageBucket = dotenv.get('FIREBASE_STORAGE_BUCKET');
   static final sendbirdChatAppId = dotenv.get('SEND_BIRD_APP_ID');
+  static final apiHost = dotenv.get('KT_COURSE_API_HOST');
+  static final googleClientId = dotenv.get('GOOGLE_CLIENT_ID');
 }
