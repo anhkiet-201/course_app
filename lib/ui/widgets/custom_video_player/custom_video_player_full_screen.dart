@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kt_course/common/extensions/hero_animation_extensions.dart';
 import 'package:kt_course/ui/widgets/custom_video_player/controller/custom_video_player_controller.dart';
-import 'package:kt_course/ui/widgets/custom_video_player/custom_video_player_control_view.dart';
 import 'package:video_player/video_player.dart';
 
 class CustomVideoPlayerFullScreen extends StatelessWidget {
@@ -23,7 +22,8 @@ class CustomVideoPlayerFullScreen extends StatelessWidget {
                   child: child))),
             ),
           ),
-          CustomVideoPlayerControl(_controller)
+          if(_controller.videoControl != null)
+            _controller.videoControl!(_controller)
         ],
       ),
     );
