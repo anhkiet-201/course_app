@@ -38,7 +38,7 @@ abstract class _CustomVideoPlayerControllerBase extends BaseController
   @readonly
   bool _shouldShowControlView =
       true; // Determines if video controls should be visible.
-  Timer? _coutToHideControl; // Timer to automatically hide controls.
+  Timer? _countToHideControl; // Timer to automatically hide controls.
 
   // Constructor initializes the controller with video URL, autoplay, and looping options.
   _CustomVideoPlayerControllerBase(String url, bool autoPlay, bool looping, this.videoControl) {
@@ -88,7 +88,7 @@ abstract class _CustomVideoPlayerControllerBase extends BaseController
     videoController.pause();
 
     // Cancels any pending timer to hide controls, ensuring visibility during seeking.
-    _coutToHideControl?.cancel();
+    _countToHideControl?.cancel();
 
     // Forces the control view to be visible for user interaction.
     _shouldShowControlView = true;
@@ -128,7 +128,7 @@ abstract class _CustomVideoPlayerControllerBase extends BaseController
       videoController.pause();
 
       // Cancels any pending timer to hide controls, ensuring visibility in paused state.
-      _coutToHideControl?.cancel();
+      _countToHideControl?.cancel();
 
       // Shows the controls for paused state.
       _shouldShowControlView = true;
@@ -182,12 +182,12 @@ abstract class _CustomVideoPlayerControllerBase extends BaseController
     _shouldShowControlView = true;
 
     // Cancels any existing timer to prevent multiple timers.
-    _coutToHideControl?.cancel();
-    _coutToHideControl = null;
+    _countToHideControl?.cancel();
+    _countToHideControl = null;
 
     // If the video is playing, schedule a timer to hide controls after 3 seconds.
     if (_isPlaying) {
-      _coutToHideControl = Timer(const Duration(seconds: 3), () {
+      _countToHideControl = Timer(const Duration(seconds: 3), () {
         _shouldShowControlView = false;
       });
     }
@@ -200,8 +200,8 @@ abstract class _CustomVideoPlayerControllerBase extends BaseController
     _shouldShowControlView = false;
 
     // Cancels any pending timer to prevent delayed hiding.
-    _coutToHideControl?.cancel();
-    _coutToHideControl = null;
+    _countToHideControl?.cancel();
+    _countToHideControl = null;
   }
 
   // Disposes of the video controller to release resources:
