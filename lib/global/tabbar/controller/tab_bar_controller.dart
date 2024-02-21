@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:kt_course/ui/pages/search/controller/search_controller.dart' as s;
 import 'package:kt_course/ui/pages/account/account_page.dart';
 import 'package:kt_course/ui/pages/account/controller/account_controller.dart';
 import 'package:kt_course/ui/pages/discover/controller/discover_controller.dart';
@@ -83,7 +84,7 @@ enum TabBarPredefine {
     ),
     search => KeepAlivePage(
       child: Provider(
-        create: (_) => SearchController(),
+        create: (_) => s.SearchController(),
         child: const SearchPage(),
       ),
     ),

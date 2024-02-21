@@ -31,7 +31,7 @@ abstract class _AuthControllerBase extends BaseController
   User? _currentUser;
 
   @computed
-  bool get isLogin => _currentUser != null;
+  bool get isLogin => _currentUser == null;
 
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: [
